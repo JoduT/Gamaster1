@@ -235,7 +235,7 @@ class Level(object):
 	def teleport(self):	#действие портала
 		if len(self.coin_list) == 0:
 			pygame.quit()
-			os.system('python Tk_part.py')
+			os.system('python my_part.py')
 		else:
 			return
 
