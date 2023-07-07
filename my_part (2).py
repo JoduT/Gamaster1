@@ -7,7 +7,8 @@ import webbrowser
 from PIL import ImageTk
 from Platformer import main, level_number
 import os
-
+import pyglet
+pyglet.font.add_file('Font.ttf')
 
 # постоянные величины
 WINDOW_WIDTH = 800  # ширина окна
@@ -47,7 +48,7 @@ def tk_part():
         clicker_button = Button(text="КЛИКЕР", font=('Franklin Gothic Heavy', 25), fg ='#640', bg = '#ffe500', command= clicker) #fg="#8a2812", bg = '#f7b3a3'
         clicker_button.place(x= 20, y=250, height = 80, width=365)
         # кнопка с орлом и решкой
-        orel_button = Button(text='ОРЕЛ ИЛИ РЕШКА?', font=('Franklin Gothic Heavy', 25), fg ='#640', bg = '#ffe500', command=o_r) #fg='#04427d', bg= '#a6d0f7'
+        orel_button = Button(text='ОРЕЛ ИЛИ РЕШКА?', font=('Franklin Gothic Heavy', 25), fg ='#640', bg = '#ffe500', command= orel_reshka) #fg='#04427d', bg= '#a6d0f7'
         orel_button.place(x=415, y=250, height = 80, width=365)
         # кнопка с платформером
         img = ImageTk.PhotoImage(file='pictures\platteaser_0.png')
@@ -55,7 +56,7 @@ def tk_part():
         platformer_button.place(x=20, y=130, height = 80, width=365)
         # кнопка со змейкой
         img2 = ImageTk.PhotoImage(file='pictures\snaketeaser_0.png')
-        q_button= Button(text='ОБ ИГРЕ И АВТОРАХ', font=('Franklin Gothic Heavy', 25), fg ='#640', bg = '#ffe500', command=about) #fg='#0b611d', bg='#a9e5a8'
+        q_button= Button(text='ОБ ИГРЕ И АВТОРАХ', font=('Franklin Gothic Heavy', 25), fg ='#640', bg = '#ffe500', command = about) #fg='#0b611d', bg='#a9e5a8'
         q_button.place(x=415, y=370, height = 80, width=365)
 
 
@@ -115,10 +116,6 @@ def tk_part():
         home_button.bind("<Enter>", on_enterhome)
         home_button.bind("<Leave>", on_leavehome)
 
-    def about():
-        os.system("start site_for.html")
-
-
     # Функция, запускающая факты
     def facts():
         clear()
@@ -137,42 +134,8 @@ def tk_part():
         more_button.place(x=250, y=475, height = 80)
     # всё для кликера
 
-    def o_r():
-        moneta = ["орел", "решка"]
-        ran = random.choice(moneta)
-
-        def orel_or_reshka_func():
-            label = Label(bg='#ffad08')
-            orel_or_reshka = Label(text="Орёл или решка?", font=("Arial", 28), bg='#f9fac0')
-            orel_b = Button(text=" ОРЁЛ ", font=("Arial", 38), command=check_orel)
-            reshka_b = Button(text=" РЕШКА ", font=("Arial", 38), command=check_reshka)
-            label.place(x=0, y=0, width=800, height=800)
-            orel_or_reshka.place(x=260, y=50)
-            orel_b.place(x=180, y=250, width=200)
-            reshka_b.place(x=440, y=250, width=200)
-
-        def check_orel():
-            global ran, answer
-            ran = random.choice(moneta)
-            answer = "орел"
-            o_r_result()
-
-        def check_reshka():
-            global ran, answer
-            ran = random.choice(moneta)
-            answer = "решка"
-            o_r_result()
-
-        def o_r_result():
-            global ran, answer
-            clear()
-            if answer == ran:
-                image_idle=PhotoImage(file='pictures/idle_0.png')
-                orel_label = Label(image=image_idle)
-                orel_label.place(x=115, y=250, width=600)
-
-        orel_or_reshka_func()
-
+    def about():
+        os.system("start site_for.html")
 
     def clicker():
         clear()
@@ -338,10 +301,9 @@ def tk_part():
 
         def game_over():  # если произошло столкновение
             global score
-            score = 0
+            score -= score
             canvas.delete(ALL)
             draw_menu()
-
         # привязка функций к клавишам
         window.bind('<Down>', lambda event: change_direction('down'))
         window.bind('<Up>', lambda event: change_direction('up'))
@@ -350,6 +312,44 @@ def tk_part():
         snake = Snake()  # собственно змея
         food = Food()  # создание еды
         move(snake, food)  # запускаем игру
+
+    moneta = ["орел", "решка"]
+
+    def orel_reshka():
+        clear()
+        orel_or_reshka = Label(text="Орёл или решка?", font=('Franklin Gothic Heavy', 60), fg= '#994102', bg= '#f9fac0')
+        orel_or_reshka.place(x=75, y=50)
+        orel_b = Button(text=" ОРЁЛ ", font=("Franklin Gothic Heavy", 40), fg= 'black', bg= '#ff8c3b', command=check_orel)
+        orel_b.place(x= 125, y=250, width= 250)
+        reshka_b = Button(text=" РЕШКА ", font=("Franklin Gothic Heavy", 40), fg= 'white', bg= '#ff8c3b', command=check_reshka)
+        reshka_b.place(x= 425, y=250, width = 250)
+    def check_orel():
+        global ran, answer
+        ran = random.choice(moneta)
+        answer = "орел"
+        o_r_result()
+
+    def check_reshka():
+        global ran, answer
+        ran = random.choice(moneta)
+        answer = "решка"
+        o_r_result()
+
+    def o_r_result():
+        global ran, answer
+        ran = random.choice(moneta)
+        if answer == ran:
+            img = PhotoImage(file='pictures/gold_card.png')
+            win = Label(window, image= img, bg = '#f9fac0')
+            win.image_ref = img
+            win.place(x = 50, y = 50, width= 700, height= 400)
+        else:
+            img = PhotoImage(file='pictures/dollars.png')
+            lose = Label(window, image=img, bg = '#f9fac0')
+            lose.image_ref = img
+            lose.place(x=50, y=50, width= 700, height= 400)
+
+
 
     draw_menu()
     window.mainloop()
