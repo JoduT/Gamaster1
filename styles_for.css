@@ -1,0 +1,111 @@
+body{
+    background: linear-gradient(to top, #FF9A3C, 20%, #FDFFAB);
+    font-size: 20pt;
+    font-family: Franklin Gothic Heavy;
+    text-align: left;
+    color: #9c3900;
+}
+h1{
+    color: #ff7b00;
+    text-align: center;
+    font-size: 60pt;
+    text-shadow: 3px 3px 3px #9c3f09;
+}
+h2{
+    color: #ff7b00;
+    font-size: 40pt;
+}
+
+h3{
+    color: #ff5f03;
+    font-size: 35pt;
+}
+ul{
+    border: 5px solid #FF7C38;
+    border-radius:10px;
+    width: 450px;
+    text-align: center;
+    margin-left: 60px;
+}
+.left{
+    text-align: center;
+    float: left;
+    border: 5px solid #FF7C38;
+    border-radius:10px;
+    width: 580px;
+    height: 530px;
+    font-size:21px;
+    color: #6e2d08;
+    background: #f7cd60;
+    padding:auto;
+    margin-left: 20px;
+    margin-down: 100px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.right{
+    text-align: center;
+    float:right;
+    border: 5px solid #FF7C38;
+    border-radius:10px;
+    width: 580px;
+    height: 530px;
+    font-size:21px;
+    color: #6e2d08;
+    background: #FFBD39;
+    padding:auto;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.o_r{
+    text-align: center;
+    float: left;
+    border: 5px solid #FF7C38;
+    border-radius:10px;
+    width: 580px;
+    height: 410px;
+    font-size:20px;
+    color: #6e2d08;
+    background: #f7cd60;
+    padding:auto;
+    margin-left: 20px;
+    margin-down: 100px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.o_r1{
+    text-align: center;
+    float:right;
+    border: 5px solid #FF7C38;
+    border-radius:10px;
+    width: 580px;
+    height: 410px;
+    font-size:20px;
+    color: #6e2d08;
+    background: #FFBD39;
+    padding:auto;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.center{
+    align = 'center';
+}
+.right_m{
+    margin-left:60px;
+}
+.picture{
+    border: 5px solid #FF7C38;
+    border-radius:10px;
+    align="center"
+}
+.end{
+border: 5px solid #ff7c38;
+border-radius: 10px;
+}
+.ends{
+text-align: center
+}
+
+
